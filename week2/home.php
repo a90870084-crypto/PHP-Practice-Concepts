@@ -7,97 +7,54 @@
 
 <?php
 
-// 1. CONSTANT
-define("PI", 3.14);
+//creatin array -numeric array
 
-echo "<h2>Constant</h2>";
-echo "Value of PI is: ", PI;
+//first way to create array
+$names = array ();
+//second way to intialize array
+$names [0] ="ca233 is the best class";
+$names [1] = 123;
+echo $names[0] ,"<br>";
+echo $names[1] ,"<br>";
+// display the the arr
+//display all the values usin pre tag
+echo "<pre>";
+print_r($names);
+echo "</pre>";
 
-echo "<hr>";
+//display all
+echo "<br>";
+echo "<pre>";
+print_r($names);
+echo "</pre>";
 
-// 2. IF / ELSEIF / ELSE
-$marks = 87;
-
-echo "<h2>If / Elseif / Else</h2>";
-
-if ($marks >= 90) {
-    echo "Excellent";
-}
-elseif ($marks >= 80) {
-    echo "Very good";
-}
-elseif ($marks >= 50) {
-    echo "Minimal pass";
-}
-else {
-    echo "Fail";
-}
-
-echo "<hr>";
-
-// 3. SWITCH CASE
-$day = 2;
-
-echo "<h2>Switch Case</h2>";
-
-switch ($day) {
-    case 1:
-        echo "Monday";
-        break;
-
-    case 2:
-        echo "Tuesday";
-        break;
-
-    case 3:
-        echo "Wednesday";
-        break;
-
-    case 4:
-        echo "Thursday";
-        break;
-
-    case 5:
-        echo "Friday";
-        break;
-
-    default:
-        echo "Invalid day";
+$info = array(
+    "101",
+    "aisha ahmed maxamud",
+    20,
+    "hodan district",
+    "single"
+);
+echo"array values using for loop: <br>";
+for($i=0; $i <count($info); $i++){
+    echo $info [$i] . "<br>";
 }
 
-echo "<hr>";
-
-// 4. FOR LOOP - Multiplication Table
-echo "<h2>For Loop - 12 Times Table</h2>";
-
-for ($count = 1; $count <= 12; ++$count) {
-    echo "$count times 12 is " . ($count * 12) . "<br>";
-}
-
-echo "<hr>";
-
-// 5. FOR LOOP - Numbers 1 to 15
-echo "<h2>For Loop - Numbers 1 to 15</h2>";
-
-for ($count = 1; $count <= 15; $count++) {
-    echo "$count<br>";
-}
-for ($i = 1; $i <= 5; $i++) {
-    for ($j = 1; $j <= 5; $j++) {
-        echo "$i * $j = " . ($i * $j) . "<br>";
-    }
-}
-
-echo "<br><hr><br>";
-
-// HABKA 2: Row is 1, Column is 1, Result is 1 Format
-for ($i = 1; $i <= 5; $i++) {
-    for ($j = 1; $j <= 5; $j++) {
-        echo "Row is $i, Column is $j, Result is " . ($i * $j) . "<br>";
-    }
-}
-
+$ca233 = array(
+    "id"=>"101",
+    "name"=>"mohamed ali cabdi",
+    "age"=>"20",
+    "adress"=>"hodan district",
+    "status"=>"single",
+    "weigh"=>"160.5"
+);
+echo "<pre>";
+echo "information about the person: <br>";
+print_r($info);
+var_dump($info);
+echo"<pre>";
 ?>
+
 
 </body>
 </html>
