@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>PHP Examples</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1 Solution</title>
 </head>
 <body>
+
 <?php
 // 1. Greatest and Smallest Number
 $a = 25;
@@ -29,7 +32,6 @@ if ($a <= $b && $a <= $c) {
 echo "1. Greatest number: " . $greatest . "<br>";
 echo "Smallest number: " . $smallest . "<br><br>";
 // 2. Divisible by 3 and 5
-
 $num = 15;
 
 echo "2. ";
@@ -66,9 +68,9 @@ for ($i = 35; $i >= 7; $i--) {
 }
 
 echo "<br><br>";
+
 // 4. Divisible by 2 and 5
 //    From 50 to 2
-
 echo "4. Numbers divisible by both 2 and 5:<br>";
 
 for ($i = 50; $i >= 2; $i--) {
@@ -92,7 +94,9 @@ while ($num > 0) {
 echo "5. Reverse number: " . $reverse;
 
 echo "<br><br>";
+
 // 6. LCM of two numbers
+
 $a = 8;
 $b = 12;
 
@@ -111,6 +115,80 @@ while (true) {
 }
 
 echo "6. LCM of $a and $b = " . $lcm;
+
+echo "<br><br>";
+
+// 7. HCF (GCD) of two numbers
+
+$num1 = 18;
+$num2 = 24;
+$hcf = 1;
+
+for ($i = 1; $i <= $num1 && $i <= $num2; $i++) {
+    if ($num1 % $i == 0 && $num2 % $i == 0) {
+        $hcf = $i;
+    }
+}
+
+echo "7. HCF of $num1 and $num2 = " . $hcf;
+
+echo "<br><br>";
+// 8. Multiplication Table (12x12)
+echo "8. Multiplication Table:<br><br>";
+echo "<table border='1' cellpadding='5' cellspacing='0'>";
+
+for ($row = 1; $row <= 12; $row++) {
+    echo "<tr>";
+    for ($col = 1; $col <= 12; $col++) {
+        echo "<td>" . ($row * $col) . "</td>";
+    }
+    echo "</tr>";
+}
+
+echo "</table>";
+
+echo "<br><br>";
+// 9. Prime or Non-Prime Number
+
+$number = 17;
+$isPrime = true;
+
+if ($number <= 1) {
+    $isPrime = false;
+} else {
+    for ($i = 2; $i <= $number / 2; $i++) {
+        if ($number % $i == 0) {
+            $isPrime = false;
+            break;
+        }
+    }
+}
+
+echo "9. ";
+if ($isPrime) {
+    echo "$number is a Prime number.";
+} else {
+    echo "$number is a Non-Prime number.";
+}
+
+echo "<br><br>";
+// 10. Prime Numbers from 10 to 50
+echo "10. Prime numbers from 10 to 50:<br>";
+
+for ($num = 10; $num <= 50; $num++) {
+    $count = 0;
+
+    for ($i = 2; $i <= $num / 2; $i++) {
+        if ($num % $i == 0) {
+            $count++;
+            break;
+        }
+    }
+
+    if ($count == 0 && $num > 1) {
+        echo $num . " ";
+    }
+}
 
 ?>
 
