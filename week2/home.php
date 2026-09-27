@@ -5,121 +5,56 @@
 </head>
 <body>
 <?php
-// 1. Greatest and Smallest Number
-$a = 25;
-$b = 10;
-$c = 18;
+<?php
+   
+   // creating array - numerically
+   $names = array();
 
-if ($a >= $b && $a >= $c) {
-    $greatest = $a;
-} elseif ($b >= $a && $b >= $c) {
-    $greatest = $b;
-} else {
-    $greatest = $c;
-}
+   //second way to intilialize array
+   $names  [0] ="upah im programmer";
+    $names  [1] =123;
+    $names[]=12.34;
 
-if ($a <= $b && $a <= $c) {
-    $smallest = $a;
-} elseif ($b <= $a && $b <= $c) {
-    $smallest = $b;
-} else {
-    $smallest = $c;
-}
+    echo $names[0] . "<br>";
+    echo $names[1] . "<br>";
+     echo $names[2] . "<br>";
 
-echo "1. Greatest number: " . $greatest . "<br>";
-echo "Smallest number: " . $smallest . "<br><br>";
-// 2. Divisible by 3 and 5
+    // display all
+    echo "<br>";
+    echo "<pre>";
+    var_dump($names);
+    echo "</pre>";
 
-$num = 15;
-echo "2. ";
+    $info = array(
+        "101", 
+        "Upah omar alasow",
+        20,
+        "Karan District",
+        "single"
+    );
 
-if ($num % 3 == 0 && $num % 5 == 0) {
-    echo "The number is divisible by both 3 and 5.";
-} elseif ($num % 3 == 0) {
-    echo "The number is divisible by 3.";
-} elseif ($num % 5 == 0) {
-    echo "The number is divisible by 5.";
-} else {
-    echo "The number is divisible by neither 3 nor 5.";
-}
+    //To loop through and print all the values of an indexed array, you could use for lopp
+        echo"array values using for loop: <br>";
+        for($i =0; $i <count($info); $i++){
+            echo $info [$i] . "<br>";
+        
+        }
 
-echo "<br><br>";
+        //example of associative arrray to store information about a person
 
-
-// 3. Odd numbers 2 to 20
-//    Even numbers 35 to 7
-
-
-echo "3. Odd numbers from 2 to 20:<br>";
-
-for ($i = 2; $i <= 20; $i++) {
-    if ($i % 2 != 0) {
-        echo $i . " ";
-    }
-}
-
-echo "<br><br>";
-
-echo "Even numbers from 35 to 7:<br>";
-
-for ($i = 35; $i >= 7; $i--) {
-    if ($i % 2 == 0) {
-        echo $i . " ";
-    }
-}
-
-echo "<br><br>";
-// 4. Divisible by 2 and 5
-//    From 50 to 2
-echo "4. Numbers divisible by both 2 and 5:<br>";
-
-for ($i = 50; $i >= 2; $i--) {
-    if ($i % 2 == 0 && $i % 5 == 0) {
-        echo $i . " ";
-    }
-}
-
-echo "<br><br>";
-// 5. Reverse a number
-
-$num = 12345;
-$reverse = 0;
-
-while ($num > 0) {
-    $digit = $num % 10;
-    $reverse = ($reverse * 10) + $digit;
-    $num = (int)($num / 10);
-}
-
-echo "5. Reverse number: " . $reverse;
-
-echo "<br><br>";
-$info = array(
-    "aisha",
-    "fatima",
-    "qadija"
-);
-
-echo "6. Names List (Table):<br>";
-
-// HTML Table Start
-echo "<table>";
-echo "<tr>
-        <th>ID</th>
-        <th>Name</th>
-      </tr>";
-
-$id = 1;
-// Loop-ka la saxay
-foreach ($info as $name) {
-    echo "<tr>";
-    echo "<td>" . $id++ . "</td>";
-    echo "<td>" . ucfirst($name) . "</td>"; // ucfirst() wuxuu xarafka ugu horeeya ka doonayaa Capital
-    echo "</tr>";
-}
-
-echo "</table>";
-
+        $info = array (
+            "id"=>"101",
+            "name"=>"upah omar",
+            "age"=>20,
+            "address"=>"karan District",
+            "status"=>"single",
+            "weight"=> 160.5
+        );
+        echo "<pre>";
+        echo "information about rhe person: <br>";
+        print_r($info);
+        var_dump($info);
+        echo"</pre>";
 
 ?>
 
