@@ -31,6 +31,7 @@ echo "Smallest number: " . $smallest . "<br><br>";
 // 2. Divisible by 3 and 5
 
 $num = 15;
+
 echo "2. ";
 
 if ($num % 3 == 0 && $num % 5 == 0) {
@@ -44,12 +45,8 @@ if ($num % 3 == 0 && $num % 5 == 0) {
 }
 
 echo "<br><br>";
-
-
 // 3. Odd numbers 2 to 20
 //    Even numbers 35 to 7
-
-
 echo "3. Odd numbers from 2 to 20:<br>";
 
 for ($i = 2; $i <= 20; $i++) {
@@ -71,6 +68,7 @@ for ($i = 35; $i >= 7; $i--) {
 echo "<br><br>";
 // 4. Divisible by 2 and 5
 //    From 50 to 2
+
 echo "4. Numbers divisible by both 2 and 5:<br>";
 
 for ($i = 50; $i >= 2; $i--) {
@@ -94,32 +92,25 @@ while ($num > 0) {
 echo "5. Reverse number: " . $reverse;
 
 echo "<br><br>";
-$info = array(
-    "aisha",
-    "fatima",
-    "qadija"
-);
+// 6. LCM of two numbers
+$a = 8;
+$b = 12;
 
-echo "6. Names List (Table):<br>";
-
-// HTML Table Start
-echo "<table>";
-echo "<tr>
-        <th>ID</th>
-        <th>Name</th>
-      </tr>";
-
-$id = 1;
-// Loop-ka la saxay
-foreach ($info as $name) {
-    echo "<tr>";
-    echo "<td>" . $id++ . "</td>";
-    echo "<td>" . ucfirst($name) . "</td>"; // ucfirst() wuxuu xarafka ugu horeeya ka doonayaa Capital
-    echo "</tr>";
+if ($a > $b) {
+    $lcm = $a;
+} else {
+    $lcm = $b;
 }
 
-echo "</table>";
+while (true) {
+    if ($lcm % $a == 0 && $lcm % $b == 0) {
+        break;
+    }
 
+    $lcm++;
+}
+
+echo "6. LCM of $a and $b = " . $lcm;
 
 ?>
 
