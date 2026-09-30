@@ -6,7 +6,6 @@
     <title>Assignment 1 Solution</title>
 </head>
 <body>
-
 <?php
 // 1. Greatest and Smallest Number
 $a = 25;
@@ -144,7 +143,6 @@ for ($row = 1; $row <= 12; $row++) {
     }
     echo "</tr>";
 }
-
 echo "</table>";
 
 echo "<br><br>";

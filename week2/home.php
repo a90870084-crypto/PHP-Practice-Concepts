@@ -11,7 +11,7 @@
    $names = array();
 
    //second way to intilialize array
-   $names  [0] ="upah im programmer";
+   $names  [0] ="aisha im programmer";
     $names  [1] =123;
     $names[]=12.34;
 
@@ -44,7 +44,7 @@
 
         $info = array (
             "id"=>"101",
-            "name"=>"upah omar",
+            "name"=>"aisha omar",
             "age"=>20,
             "address"=>"karan District",
             "status"=>"single",
