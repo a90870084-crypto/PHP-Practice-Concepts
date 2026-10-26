@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ubax omar</title>
+</head>
+<body>
+
+    <h2 >Student Grade Management System</h2>
+
+    <form action="process.php" method="POST" enctype="multipart/form-data">
+        <label>Student Full Name:</label><br>
+        <!-- Waxaan ku beddelnay name="student_name" si uu PHP-da ula jaanqaado -->
+        <input type="text" name="student_name" required>
+        <br><br>
+
+        <label>Student ID:</label><br>
+        <input type="text" name="student_id" required>
+        <br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" name="gender" value="Male" required> Male
+        <input type="radio" name="gender" value="Female"> Female
+        <br><br>
+
+        <label>Faculty:</label><br>
+        <select name="faculty" required>
+            <option value="">Select Faculty</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Information Technology">Information Technology</option>
+            <option value="Business Administration">Business Administration</option>
+            <option value="Engineering">Engineering</option>
+        </select>
+        <br><br>
+
+        <label>PHP Mark:</label><br>
+        <input type="number" name="php_mark" min="0" max="100" required>
+        <br><br>
+
+        <label>Database Mark:</label><br>
+        <input type="number" name="database_mark" min="0" max="100" required>
+        <br><br>
+
+        <label>Networking Mark:</label><br>
+        <input type="number" name="networking_mark" min="0" max="100" required>
+        <br><br>
+
+        <label>Student Cert:</label><br>
+        <input type="file" name="certificate" accept=".pdf,.jpg,.jpeg,.png" required>
+        <br><br>
+
+        <button type="submit">Submit and Calculate</button>
+        <button type="reset">Reset</button>
+
+    </form>
+
+</body>
+</html>
