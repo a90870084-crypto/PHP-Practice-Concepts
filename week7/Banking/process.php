@@ -1,5 +1,6 @@
 <?php
 require_once 'functions.php';
+
 if (isset($_POST['submitBtn'])) {
     $fullName = $_POST['fullName'];
     $accountNumber = $_POST['accountNumber'];
@@ -9,8 +10,10 @@ if (isset($_POST['submitBtn'])) {
     $transactionType = isset($_POST['transactionType']) ? $_POST['transactionType'] : "";
     $transactionAmount = $_POST['transactionAmount'];
     $accountDuration = $_POST['accountDuration'];
+    
     $hasError = false;
     $errorMessage = "";
+
     if (empty($fullName)) {
         $hasError = true;
         $errorMessage .= "Customer Full Name must not be empty.<br>";
@@ -23,13 +26,10 @@ if (isset($_POST['submitBtn'])) {
         $hasError = true;
         $errorMessage .= "Gender must be selected.<br>";
     }
-
-
     if (empty($accountType)) {
         $hasError = true;
         $errorMessage .= "Account Type must be selected.<br>";
     }
-
     if ($openingBalance < 0 || $openingBalance === "") {
         $hasError = true;
         $errorMessage .= "Opening Balance must be zero or greater.<br>";
@@ -38,13 +38,10 @@ if (isset($_POST['submitBtn'])) {
         $hasError = true;
         $errorMessage .= "Transaction Type must be selected.<br>";
     }
-
-  
     if ($transactionAmount <= 0 || $transactionAmount === "") {
         $hasError = true;
         $errorMessage .= "Transaction Amount must be greater than zero.<br>";
     }
-
     if ($accountDuration < 0 || $accountDuration === "") {
         $hasError = true;
         $errorMessage .= "Account Duration must be a non-negative whole number.<br>";
@@ -57,8 +54,7 @@ if (isset($_POST['submitBtn'])) {
         } else {
             $provisionalFee = 5;
         }
-    }
-    if ($transactionType == "Withdrawal") {
+        
         $totalWithdrawalCost = $transactionAmount + $provisionalFee;
         if ($totalWithdrawalCost > $openingBalance) {
             $hasError = true;
@@ -66,13 +62,11 @@ if (isset($_POST['submitBtn'])) {
         }
     }
 
-    
     if (empty($_FILES['idDocument']['name'])) {
         $hasError = true;
         $errorMessage .= "An identification document must be selected.<br>";
     }
 
-    
     $fileName = "";
     $fileSize = 0;
     $fileType = "";
@@ -81,19 +75,21 @@ if (isset($_POST['submitBtn'])) {
     if (!$hasError) {
         $fileName = $_FILES['idDocument']['name'];
         $fileSize = $_FILES['idDocument']['size'];
-        
         $fileType = $_FILES['idDocument']['type'];
         $fileTmpName = $_FILES['idDocument']['tmp_name'];
 
-        
         if ($fileSize > 2097152) {
-       
-        $error.=" file size exceeds 2 MB .<br>";
-        $uploadDir ="upload/";
-        $uploadDirFile = $uploadDirFile .$fileName;
+            $hasError = true;
+            $errorMessage .= "File size exceeds 2 MB.<br>";
+        }
 
-
-       
+        $uploadDir = "upload/";
+        // Ensure the upload directory exists
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+        
+        $destination = $uploadDir . basename($fileName);
 
         if (file_exists($destination)) {
             $hasError = true;
@@ -110,7 +106,7 @@ if (isset($_POST['submitBtn'])) {
         }
     }
 
-    
+    // Display Errors or Receipt
     if ($hasError) {
         echo "<div style='color: red; font-family: Arial; padding: 20px;'>";
         echo "<h3>Validation / Upload Error(s):</h3>";
@@ -118,13 +114,11 @@ if (isset($_POST['submitBtn'])) {
         echo "<br><a href='index.html'>Back to Banking Form</a>";
         echo "</div>";
     } else {
-        
         $transactionFee = calculateTransactionFee($transactionType, $transactionAmount);
         $totalCharges = calculateTotalCharges($transactionFee);
         $finalBalance = calculateFinalBalance($openingBalance, $transactionType, $transactionAmount, $totalCharges);
         $accountStatus = checkAccountStatus($finalBalance);
 
-        // Interest Rate selection lookup for display string
         $interestRateDisplay = "";
         if ($accountType == "Savings") {
             $interestRateDisplay = "5%";
@@ -134,10 +128,9 @@ if (isset($_POST['submitBtn'])) {
             $interestRateDisplay = "3%";
         }
 
-        // Calculate Interest & Future Balance (Demonstrating default parameter if duration is 0 or matching requirement)
         if ($accountDuration == 0) {
-            $calculatedInterest = calculateInterest($accountType, $finalBalance, 1); // Triggers default concept / 1 year standard
-            $projectedFutureBalance = calculateFutureBalance($finalBalance, $calculatedInterest); // Uses default parameter = 1 inside function definition
+            $calculatedInterest = calculateInterest($accountType, $finalBalance, 1);
+            $projectedFutureBalance = calculateFutureBalance($finalBalance, $calculatedInterest);
         } else {
             $calculatedInterest = calculateInterest($accountType, $finalBalance, $accountDuration);
             $projectedFutureBalance = calculateFutureBalance($finalBalance, $calculatedInterest, $accountDuration);
@@ -210,19 +203,19 @@ if (isset($_POST['submitBtn'])) {
         </tr>
         <tr>
             <td>Customer Full Name</td>
-            <td><?php echo $fullName; ?></td>
+            <td><?php echo htmlspecialchars($fullName); ?></td>
         </tr>
         <tr>
             <td>Account Number</td>
-            <td><?php echo $accountNumber; ?></td>
+            <td><?php echo htmlspecialchars($accountNumber); ?></td>
         </tr>
         <tr>
             <td>Gender</td>
-            <td><?php echo $gender; ?></td>
+            <td><?php echo htmlspecialchars($gender); ?></td>
         </tr>
         <tr>
             <td>Account Type</td>
-            <td><?php echo $accountType; ?></td>
+            <td><?php echo htmlspecialchars($accountType); ?></td>
         </tr>
         <tr>
             <td>Opening Balance</td>
@@ -230,7 +223,7 @@ if (isset($_POST['submitBtn'])) {
         </tr>
         <tr>
             <td>Transaction Type</td>
-            <td><?php echo $transactionType; ?></td>
+            <td><?php echo htmlspecialchars($transactionType); ?></td>
         </tr>
         <tr>
             <td>Transaction Amount</td>
@@ -250,15 +243,15 @@ if (isset($_POST['submitBtn'])) {
         </tr>
         <tr>
             <td>Account Status</td>
-            <td><?php echo $accountStatus; ?></td>
+            <td><?php echo htmlspecialchars($accountStatus); ?></td>
         </tr>
         <tr>
             <td>Account Duration</td>
-            <td><?php echo $accountDuration; ?> Year(s)</td>
+            <td><?php echo htmlspecialchars($accountDuration); ?> Year(s)</td>
         </tr>
         <tr>
             <td>Interest Rate</td>
-            <td><?php echo $interestRateDisplay; ?></td>
+            <td><?php echo htmlspecialchars($interestRateDisplay); ?></td>
         </tr>
         <tr>
             <td>Calculated Interest</td>
@@ -270,11 +263,11 @@ if (isset($_POST['submitBtn'])) {
         </tr>
         <tr>
             <td>Document Name</td>
-            <td><?php echo $fileName; ?></td>
+            <td><?php echo htmlspecialchars($fileName); ?></td>
         </tr>
         <tr>
             <td>File Type</td>
-            <td><?php echo $fileType; ?></td>
+            <td><?php echo htmlspecialchars($fileType); ?></td>
         </tr>
         <tr>
             <td>File Size</td>
@@ -282,7 +275,7 @@ if (isset($_POST['submitBtn'])) {
         </tr>
         <tr>
             <td>Upload Status</td>
-            <td><?php echo $uploadStatus; ?></td>
+            <td><?php echo htmlspecialchars($uploadStatus); ?></td>
         </tr>
     </table>
 
